@@ -1,38 +1,24 @@
 package com.github.nukesz.examples;
 
+import com.github.nukesz.ApplicationListener;
 import com.github.nukesz.GameEngine;
 
-public class Example {
+public class Example implements ApplicationListener {
 
     public static void run(Example example) {
-        GameEngine gameEngine = new GameEngine() {
-
-            @Override
-            public void initialize() {
-                example.initialize();
-            }
-
-            @Override
-            public void update() {
-                example.update();
-            }
-
-            @Override
-            public void dispose() {
-                example.dispose();
-            }
-        };
-        gameEngine.init();
-        gameEngine.loop();
-        gameEngine.close();
+        GameEngine engine = new GameEngine(example);
+        engine.run();
     }
 
-    public void initialize() {
+    @Override
+    public void init() {
     }
 
+    @Override
     public void update() {
     }
 
-    public void dispose() {
+    @Override
+    public void cleanUp() {
     }
 }

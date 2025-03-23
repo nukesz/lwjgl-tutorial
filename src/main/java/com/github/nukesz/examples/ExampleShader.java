@@ -9,7 +9,7 @@ public class ExampleShader extends Example{
     private int programId;
 
     @Override
-    public void initialize() {
+    public void init() {
         programId = ShaderUtils.initProgram("vertex_shader.vert", "fragment_shader.frag");
 
         int vaoRef = GL30.glGenVertexArrays();

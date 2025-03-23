@@ -15,7 +15,7 @@ public class ExampleTriangleAnimation extends Example {
     private Uniform<Vector> baseColor;
 
     @Override
-    public void initialize() {
+    public void init() {
         programId = ShaderUtils.initProgram("uniform_position.vert", "uniform_color.frag");
         GL30.glLineWidth(5);
 

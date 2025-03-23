@@ -12,7 +12,7 @@ public class ExampleTwoShapes extends Example {
     private int vaoSquareId;
 
     @Override
-    public void initialize() {
+    public void init() {
         programId = ShaderUtils.initProgram("position.vert", "color.frag");
         GL30.glLineWidth(5);
 

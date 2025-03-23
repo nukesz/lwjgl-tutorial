@@ -3,7 +3,7 @@ package com.github.nukesz.examples;
 public class ExampleWindow extends Example {
 
     @Override
-    public void initialize() {
+    public void init() {
         System.out.println("ExampleWindow.init");
     }
 
@@ -13,8 +13,8 @@ public class ExampleWindow extends Example {
     }
 
     @Override
-    public void dispose() {
-        System.out.println("ExampleWindow.dispose");
+    public void cleanUp() {
+        System.out.println("ExampleWindow.cleanUp");
     }
 
     public static void main(String[] args) {

@@ -10,7 +10,7 @@ public class ExampleSixPoints extends Example {
     private int programId;
 
     @Override
-    public void initialize() {
+    public void init() {
         programId = ShaderUtils.initProgram("position.vert", "color.frag");
         GL30.glLineWidth(5);
 
