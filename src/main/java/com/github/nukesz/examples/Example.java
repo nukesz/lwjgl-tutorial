@@ -2,6 +2,7 @@ package com.github.nukesz.examples;
 
 import com.github.nukesz.ApplicationListener;
 import com.github.nukesz.GameEngine;
+import com.github.nukesz.InputHandler;
 
 public class Example implements ApplicationListener {
 
@@ -11,7 +12,7 @@ public class Example implements ApplicationListener {
     }
 
     @Override
-    public void init() {
+    public void init(InputHandler inputHandler) {
     }
 
     @Override

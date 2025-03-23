@@ -1,9 +1,11 @@
 package com.github.nukesz.examples;
 
+import com.github.nukesz.InputHandler;
+
 public class ExampleWindow extends Example {
 
     @Override
-    public void init() {
+    public void init(InputHandler inputHandler) {
         System.out.println("ExampleWindow.init");
     }
 

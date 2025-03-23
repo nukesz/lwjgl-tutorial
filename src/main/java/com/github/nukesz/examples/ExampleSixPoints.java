@@ -1,6 +1,7 @@
 package com.github.nukesz.examples;
 
 import com.github.nukesz.Attribute;
+import com.github.nukesz.InputHandler;
 import com.github.nukesz.ShaderUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
@@ -10,7 +11,7 @@ public class ExampleSixPoints extends Example {
     private int programId;
 
     @Override
-    public void init() {
+    public void init(InputHandler inputHandler) {
         programId = ShaderUtils.initProgram("position.vert", "color.frag");
         GL30.glLineWidth(5);
 

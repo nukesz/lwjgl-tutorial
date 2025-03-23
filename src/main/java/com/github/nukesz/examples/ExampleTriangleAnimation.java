@@ -1,9 +1,6 @@
 package com.github.nukesz.examples;
 
-import com.github.nukesz.Attribute;
-import com.github.nukesz.ShaderUtils;
-import com.github.nukesz.Uniform;
-import com.github.nukesz.Vector;
+import com.github.nukesz.*;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
@@ -15,7 +12,7 @@ public class ExampleTriangleAnimation extends Example {
     private Uniform<Vector> baseColor;
 
     @Override
-    public void init() {
+    public void init(InputHandler inputHandler) {
         programId = ShaderUtils.initProgram("uniform_position.vert", "uniform_color.frag");
         GL30.glLineWidth(5);
 

@@ -104,6 +104,10 @@ public class Window {
         return glfwWindowShouldClose(window);
     }
 
+    public long getHandle() {
+        return window;
+    }
+
     public void close() {
         // Free the window callbacks and destroy the window
         glfwFreeCallbacks(window);

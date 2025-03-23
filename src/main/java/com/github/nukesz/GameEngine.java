@@ -25,9 +25,11 @@ public class GameEngine {
 
         window.init();
         window.prepare();
-        applicationListener.init();
+        InputHandler inputHandler = new InputHandler(window);
+        applicationListener.init(inputHandler);
         while (!window.windowShouldClose()) {
             window.pollEvents();
+            inputHandler.update();
 
             currentTime = System.currentTimeMillis();
             deltaTime = currentTime - previousTime;
