@@ -35,7 +35,7 @@ public class ExampleTriangleAnimation extends Example {
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
         translation.data.values[0] += 0.0002f;
 
         if (translation.data.values[0] > 1.2f)

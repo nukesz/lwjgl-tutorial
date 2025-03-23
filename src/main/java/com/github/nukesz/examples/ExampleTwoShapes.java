@@ -37,7 +37,7 @@ public class ExampleTwoShapes extends Example {
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
         GL30.glUseProgram(programId);
 
         GL30.glBindVertexArray(vaoTriangleId);

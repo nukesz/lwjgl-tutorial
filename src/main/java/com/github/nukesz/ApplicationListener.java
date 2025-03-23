@@ -4,7 +4,7 @@ public interface ApplicationListener {
 
     void init();
 
-    void update();
+    void update(float deltaTime);
 
     void cleanUp();
 }

@@ -19,7 +19,7 @@ public class ExampleShader extends Example{
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
         GL30.glUseProgram(programId);
         GL30.glDrawArrays(GL11.GL_POINTS, 0, 1);
     }

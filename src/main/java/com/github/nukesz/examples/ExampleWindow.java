@@ -8,7 +8,7 @@ public class ExampleWindow extends Example {
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
         System.out.println("ExampleWindow.update");
     }
 

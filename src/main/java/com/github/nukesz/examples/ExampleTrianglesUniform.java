@@ -40,7 +40,7 @@ public class ExampleTrianglesUniform extends Example {
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
         GL30.glUseProgram(programId);
 
         translation1.uploadData();

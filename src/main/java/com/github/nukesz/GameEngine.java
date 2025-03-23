@@ -4,6 +4,13 @@ public class GameEngine {
 
     private final Window window;
     private final ApplicationListener applicationListener;
+    // number of seconds application has been running
+    private float time;
+    // seconds since last iteration of run loop
+    private float deltaTime;
+    // store time data from last iteration of run loop
+    private long previousTime;
+    private long currentTime;
 
     public GameEngine(ApplicationListener applicationListener) {
         this.applicationListener = applicationListener;
@@ -11,14 +18,25 @@ public class GameEngine {
     }
 
     public void run() {
+        time = 0;
+        deltaTime = 1 / 60f;
+        currentTime = System.currentTimeMillis();
+        previousTime = System.currentTimeMillis();
+
         window.init();
         window.prepare();
         applicationListener.init();
         while (!window.windowShouldClose()) {
-            window.clear();
-            applicationListener.update();
-            window.update();
             window.pollEvents();
+
+            currentTime = System.currentTimeMillis();
+            deltaTime = currentTime - previousTime;
+            time += deltaTime;
+            previousTime = currentTime;
+
+            window.clear();
+            applicationListener.update(deltaTime);
+            window.update();
         }
         cleanUp();
     }

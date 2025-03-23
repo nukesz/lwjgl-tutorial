@@ -28,7 +28,7 @@ public class ExampleSixPoints extends Example {
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
         GL30.glUseProgram(programId);
         GL30.glDrawArrays(GL11.GL_TRIANGLE_FAN, 0, 6);
     }

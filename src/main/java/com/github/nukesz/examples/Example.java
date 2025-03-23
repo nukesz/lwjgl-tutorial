@@ -15,7 +15,7 @@ public class Example implements ApplicationListener {
     }
 
     @Override
-    public void update() {
+    public void update(float deltaTime) {
     }
 
     @Override
