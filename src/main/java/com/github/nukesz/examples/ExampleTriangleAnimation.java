@@ -2,18 +2,18 @@ package com.github.nukesz.examples;
 
 import com.github.nukesz.*;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 
 public class ExampleTriangleAnimation extends Example {
 
-    private int programId;
+    private ShaderProgram shaderProgram;
     private Uniform<Vector> translation;
     private Uniform<Vector> baseColor;
 
     @Override
     public void init(InputHandler inputHandler) {
-        programId = ShaderUtils.initProgram("uniform_position.vert", "uniform_color.frag");
+        shaderProgram = new ShaderProgram("uniform_position.vert", "uniform_color.frag");
+        int programId = shaderProgram.getProgramId();
         GL30.glLineWidth(5);
 
         int vaoId = GL30.glGenVertexArrays();
@@ -40,11 +40,18 @@ public class ExampleTriangleAnimation extends Example {
 
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-        GL20.glUseProgram(programId);
+        shaderProgram.bind();
 
         translation.uploadData();
         baseColor.uploadData();
         GL30.glDrawArrays(GL11.GL_TRIANGLES, 0, 3);
+
+        shaderProgram.unbind();
+    }
+
+    @Override
+    public void cleanUp() {
+        shaderProgram.cleanup();
     }
 
     public static void main(String[] args) {

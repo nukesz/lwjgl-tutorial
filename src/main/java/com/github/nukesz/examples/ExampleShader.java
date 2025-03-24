@@ -1,17 +1,17 @@
 package com.github.nukesz.examples;
 
 import com.github.nukesz.InputHandler;
-import com.github.nukesz.ShaderUtils;
+import com.github.nukesz.ShaderProgram;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
 public class ExampleShader extends Example{
 
-    private int programId;
+    private ShaderProgram shaderProgram;
 
     @Override
     public void init(InputHandler inputHandler) {
-        programId = ShaderUtils.initProgram("vertex_shader.vert", "fragment_shader.frag");
+        shaderProgram = new ShaderProgram("vertex_shader.vert", "fragment_shader.frag");
 
         int vaoRef = GL30.glGenVertexArrays();
         GL30.glBindVertexArray(vaoRef);
@@ -21,8 +21,14 @@ public class ExampleShader extends Example{
 
     @Override
     public void update(float deltaTime) {
-        GL30.glUseProgram(programId);
+        shaderProgram.bind();
         GL30.glDrawArrays(GL11.GL_POINTS, 0, 1);
+        shaderProgram.unbind();
+    }
+
+    @Override
+    public void cleanUp() {
+        shaderProgram.cleanup();
     }
 
     public static void main(String[] args) {

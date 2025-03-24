@@ -6,7 +6,7 @@ import org.lwjgl.opengl.GL30;
 
 public class ExampleTrianglesUniform extends Example {
 
-    private int programId;
+    private ShaderProgram shaderProgram;
     private Uniform<Vector> translation1;
     private Uniform<Vector> translation2;
     private Uniform<Vector> baseColor1;
@@ -14,7 +14,8 @@ public class ExampleTrianglesUniform extends Example {
 
     @Override
     public void init(InputHandler inputHandler) {
-        programId = ShaderUtils.initProgram("uniform_position.vert", "uniform_color.frag");
+        shaderProgram = new ShaderProgram("uniform_position.vert", "uniform_color.frag");
+        int programId = shaderProgram.getProgramId();
         GL30.glLineWidth(5);
 
         int vaoId = GL30.glGenVertexArrays();
@@ -38,7 +39,7 @@ public class ExampleTrianglesUniform extends Example {
 
     @Override
     public void update(float deltaTime) {
-        GL30.glUseProgram(programId);
+        shaderProgram.bind();
 
         translation1.uploadData();
         baseColor1.uploadData();
@@ -47,6 +48,13 @@ public class ExampleTrianglesUniform extends Example {
         translation2.uploadData();
         baseColor2.uploadData();
         GL30.glDrawArrays(GL11.GL_TRIANGLES, 0, 3);
+
+        shaderProgram.unbind();
+    }
+
+    @Override
+    public void cleanUp() {
+        shaderProgram.cleanup();
     }
 
     public static void main(String[] args) {

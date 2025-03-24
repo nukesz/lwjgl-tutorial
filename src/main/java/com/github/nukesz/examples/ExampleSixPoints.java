@@ -2,17 +2,17 @@ package com.github.nukesz.examples;
 
 import com.github.nukesz.Attribute;
 import com.github.nukesz.InputHandler;
-import com.github.nukesz.ShaderUtils;
+import com.github.nukesz.ShaderProgram;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
 
 public class ExampleSixPoints extends Example {
 
-    private int programId;
+    private ShaderProgram shaderProgram;
 
     @Override
     public void init(InputHandler inputHandler) {
-        programId = ShaderUtils.initProgram("position.vert", "color.frag");
+        shaderProgram = new ShaderProgram("position.vert", "color.frag");
         GL30.glLineWidth(5);
 
         int vaoId = GL30.glGenVertexArrays();
@@ -25,13 +25,19 @@ public class ExampleSixPoints extends Example {
                 -0.4f, -0.6f, 0.0f,
                 0.4f, -0.6f, 0.0f};
         Attribute positionAttribute = new Attribute("vec3", positionData);
-        positionAttribute.associateVariable(programId, "position");
+        positionAttribute.associateVariable(shaderProgram.getProgramId(), "position");
     }
 
     @Override
     public void update(float deltaTime) {
-        GL30.glUseProgram(programId);
+        shaderProgram.bind();
         GL30.glDrawArrays(GL11.GL_TRIANGLE_FAN, 0, 6);
+        shaderProgram.unbind();
+    }
+
+    @Override
+    public void cleanUp() {
+        shaderProgram.cleanup();
     }
 
     public static void main(String[] args) {
