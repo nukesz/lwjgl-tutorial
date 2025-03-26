@@ -1,4 +1,4 @@
-# A micro game engine written in java
+# A micro 3D game engine written in java
 
 Supported features:
 * Create window
